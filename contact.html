@@ -6,6 +6,24 @@
   <title>Contact | Dejyra</title>
   <meta name="description" content="Contact Dejyra：联系迪极拉，了解软件系统、AI工具与开发者平台合作方向。" />
   <meta name="theme-color" content="#000000" />
+  <!-- Dejyra assets -->
+<link rel="icon" href="/assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/assets/site.webmanifest">
+
+<meta property="og:title" content="Dejyra | 迪极拉">
+<meta property="og:description" content="Software systems for the future.">
+<meta property="og:image" content="https://dejyra.github.io/assets/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dejyra.github.io/">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dejyra | 迪极拉">
+<meta name="twitter:description" content="Software systems for the future.">
+<meta name="twitter:image" content="https://dejyra.github.io/assets/og-image.png">
+
   <style>
     :root {
       --bg: #000000;
@@ -296,7 +314,7 @@
 
     .channel-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
       margin-top: 34px;
       max-width: 1040px;
@@ -341,6 +359,15 @@
       font-size: 0.82rem;
       text-transform: uppercase;
       letter-spacing: 0.10em;
+    }
+
+    .channel-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-top: 18px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: #fff;
     }
 
     .list {
@@ -538,6 +565,13 @@
               <h3>github.com/Dejyra</h3>
               <p>适合查看公开项目、组织主页、技术方向与后续持续更新的开源或展示型工程内容。</p>
               <div class="meta"><span>Organization</span><span>Projects</span><span>Public</span></div>
+            </article>
+            <article class="channel-card">
+              <div class="tag">WeChat</div>
+              <h3>扫码添加微信</h3>
+              <p>你上传的微信二维码已经接入这里。把图片文件放到站点仓库的 <code>/assets/wechat-contact.jpg</code> 就能直接显示。</p>
+              <div class="meta"><span>WeChat</span><span>Direct Contact</span><span>QR Code</span></div>
+              <img src="/assets/wechat-contact.jpg" alt="微信二维码" />
             </article>
           </div>
         </div>
