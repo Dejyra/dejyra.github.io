@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dejyra | 迪极拉</title>
+  <meta name="description" content="迪极拉 Dejyra：软件系统、AI工具与开发者平台。面向未来的软件系统。" />
+  <meta name="theme-color" content="#000000" />
+  <style>
+    :root {
+      --bg: #000000;
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.84);
+      --muted-2: rgba(255,255,255,0.58);
+      --line: rgba(255,255,255,0.18);
+      --line-soft: rgba(255,255,255,0.10);
+      --max: 1360px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .nav-wrap {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      background: linear-gradient(180deg, rgba(0,0,0,0.78), rgba(0,0,0,0.24) 70%, transparent);
+      pointer-events: none;
+    }
+
+    .nav {
+      height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      pointer-events: auto;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-mark::before {
+      content: "";
+      position: absolute;
+      inset: 9px;
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.36));
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 13px;
+      border-radius: 6px;
+      background: #030303;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: var(--muted-2);
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .panel {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: #000;
+    }
+
+    .panel::before,
+    .panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .panel::before {
+      z-index: 1;
+      background: linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.22) 35%, rgba(0,0,0,0.86) 100%);
+    }
+
+    .panel::after {
+      z-index: 0;
+      transform: scale(1.03);
+    }
+
+    .hero::after {
+      background:
+        radial-gradient(circle at 76% 20%, rgba(255,255,255,0.30), transparent 0 7%),
+        radial-gradient(circle at 74% 22%, rgba(255,255,255,0.10), transparent 0 17%),
+        radial-gradient(circle at 18% 14%, rgba(255,255,255,0.06), transparent 0 22%),
+        linear-gradient(180deg, #020305 0%, #05070b 20%, #06090f 42%, #010101 100%);
+    }
+
+    .systems::after {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.90)),
+        radial-gradient(circle at 50% 16%, rgba(255,255,255,0.12), transparent 0 14%),
+        linear-gradient(160deg, #0a0a0c 0%, #050505 56%, #000000 100%);
+    }
+
+    .intelligence::after {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.90)),
+        radial-gradient(circle at 50% 24%, rgba(255,255,255,0.18), transparent 0 10%),
+        radial-gradient(circle at 50% 42%, rgba(255,255,255,0.08), transparent 0 22%),
+        linear-gradient(180deg, #040404 0%, #000000 100%);
+    }
+
+    .projects::after {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.92)),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(180deg, #040404 0%, #000000 100%);
+      background-size: auto, 68px 68px, 68px 68px, auto;
+    }
+
+    .contact::after {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.92)),
+        radial-gradient(circle at 50% 14%, rgba(255,255,255,0.11), transparent 0 14%),
+        linear-gradient(180deg, #030303 0%, #000000 100%);
+    }
+
+    .hero-planet {
+      position: absolute;
+      right: -16vw;
+      top: 6vh;
+      width: 64vw;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 40% 38%, rgba(255,255,255,0.28), rgba(255,255,255,0.12) 16%, rgba(255,255,255,0.02) 34%, rgba(255,255,255,0.00) 54%),
+        radial-gradient(circle at 52% 52%, rgba(255,255,255,0.08), transparent 64%);
+      box-shadow: inset -140px -120px 200px rgba(0,0,0,0.54), inset 90px 80px 120px rgba(255,255,255,0.05);
+      z-index: 0;
+      opacity: 0.96;
+    }
+
+    .hero-planet::before,
+    .hero-planet::after {
+      content: "";
+      position: absolute;
+      inset: 12%;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .hero-planet::after {
+      inset: 25%;
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 0 0 80px;
+    }
+
+    .copy {
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      margin-bottom: 18px;
+      font-size: 0.84rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    h1, h2 {
+      margin: 0;
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      max-width: 900px;
+    }
+
+    h1 { font-size: clamp(4rem, 9vw, 8rem); }
+    h2 { font-size: clamp(3.2rem, 7vw, 6.4rem); }
+
+    .lead {
+      margin: 18px 0 0;
+      max-width: 700px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.7vw, 1.18rem);
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 24px;
+      border: 2px solid rgba(255,255,255,0.84);
+      color: #fff;
+      background: transparent;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: .22s ease;
+    }
+
+    .button:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .button.ghost {
+      border-color: rgba(255,255,255,0.28);
+      color: rgba(255,255,255,0.90);
+    }
+
+    .button.ghost:hover {
+      border-color: #fff;
+    }
+
+    .minimal-strip {
+      margin-top: 34px;
+      max-width: 860px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.14);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .minimal-strip div {
+      color: var(--muted-2);
+      font-size: 0.92rem;
+    }
+
+    .minimal-strip strong {
+      display: block;
+      color: #fff;
+      font-size: 1.04rem;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .quote-block {
+      max-width: 860px;
+      padding-left: 22px;
+      border-left: 1px solid rgba(255,255,255,0.24);
+      margin-top: 24px;
+    }
+
+    .quote-block p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .list {
+      margin-top: 34px;
+      max-width: 920px;
+    }
+
+    .list-item {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 24px 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .list-item:last-child {
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .list-item h3 {
+      margin: 0;
+      font-size: 1.34rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    .list-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .list-item span {
+      color: var(--muted-2);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      white-space: nowrap;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: var(--muted-2);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .scroll-indicator::after {
+      content: "";
+      width: 1px;
+      height: 34px;
+      background: rgba(255,255,255,0.34);
+    }
+
+    footer {
+      background: #000;
+      padding: 22px 0 34px;
+      color: var(--muted-2);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.88rem;
+    }
+
+    .footer-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    .anchor-offset { scroll-margin-top: 100px; }
+
+    @media (max-width: 980px) {
+      .minimal-strip { grid-template-columns: 1fr; }
+      .list-item { grid-template-columns: 1fr; gap: 10px; }
+      .hero-planet {
+        width: 84vw;
+        right: -34vw;
+        top: 11vh;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav { height: 72px; }
+      .nav-links { display: none; }
+      .container { width: min(var(--max), calc(100% - 26px)); }
+      .panel { min-height: 100svh; }
+      .content { padding-bottom: 64px; }
+      .hero-planet {
+        width: 118vw;
+        right: -58vw;
+        top: 14vh;
+      }
+      h1 { font-size: clamp(3.1rem, 16vw, 4.8rem); }
+      h2 { font-size: clamp(2.7rem, 13vw, 4.2rem); }
+      .button { width: 100%; }
+      .actions { gap: 10px; }
+      .scroll-indicator { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Dejyra 首页">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <span>Dejyra</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="panel hero anchor-offset">
+      <div class="hero-planet" aria-hidden="true"></div>
+      <div class="content">
+        <div class="container">
+          <div class="copy">
+            <div class="eyebrow">Dejyra / 迪极拉</div>
+            <h1>面向未来的软件系统</h1>
+            <p class="lead">
+              软件系统、AI 工具与开发者平台。
+              以更少噪音、更高密度的工程能力，构建真正可落地、可扩展、可长期演进的技术产品。
+            </p>
+            <div class="actions">
+              <a class="button" href="#projects">Explore Projects</a>
+              <a class="button ghost" href="https://github.com/Dejyra" target="_blank" rel="noreferrer">GitHub Organization</a>
+            </div>
+            <div class="minimal-strip">
+              <div>
+                <strong>Software</strong>
+                业务系统 / 平台研发 / 工程交付
+              </div>
+              <div>
+                <strong>Intelligence</strong>
+                知识库 / 助手 / 自动化工作流
+              </div>
+              <div>
+                <strong>Platforms</strong>
+                开发者平台 / 工程模板 / 技术沉淀
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator">Scroll</div>
+    </section>
+
+    <section id="about" class="panel systems anchor-offset">
+      <div class="content">
+        <div class="container">
+          <div class="copy">
+            <div class="eyebrow">About Dejyra</div>
+            <h2>Build less noise.<br>Ship more signal.</h2>
+            <div class="quote-block">
+              <p>
+                Dejyra 是一个更克制的技术品牌。
+                我们不追求表面的复杂度，而是关注结构、质量、可用性与长期价值。
+              </p>
+            </div>
+            <div class="actions">
+              <a class="button" href="#capabilities">View Capabilities</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="capabilities" class="panel intelligence anchor-offset">
+      <div class="content">
+        <div class="container">
+          <div class="copy">
+            <div class="eyebrow">Capabilities</div>
+            <h2>系统研发，<br>自动化与智能化落地。</h2>
+            <div class="minimal-strip" style="max-width: 980px;">
+              <div>
+                <strong>System Engineering</strong>
+                软件定制、平台开发、管理系统、数据看板、接口集成。
+              </div>
+              <div>
+                <strong>Automation</strong>
+                数据采集、任务调度、流程自动化、工程效率工具。
+              </div>
+              <div>
+                <strong>AI Integration</strong>
+                知识库、问答助手、智能工作流与业务辅助能力。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="panel projects anchor-offset">
+      <div class="content">
+        <div class="container">
+          <div class="copy">
+            <div class="eyebrow">Projects</div>
+            <h2>项目方向</h2>
+            <div class="list">
+              <div class="list-item">
+                <div><h3>dejyra-profile</h3></div>
+                <p>组织主页、品牌资料与对外展示入口，呈现 Dejyra 的定位、方向与公开导航。</p>
+                <span>Brand</span>
+              </div>
+              <div class="list-item">
+                <div><h3>dejyra-ai-tools</h3></div>
+                <p>AI 工具、智能助手与自动化工作流项目，用于展示智能化能力与场景落地。</p>
+                <span>AI</span>
+              </div>
+              <div class="list-item">
+                <div><h3>dejyra-system-demo</h3></div>
+                <p>系统演示、产品原型、业务平台与工程案例集合，展示软件系统能力与交付气质。</p>
+                <span>Systems</span>
+              </div>
+              <div class="list-item">
+                <div><h3>dejyra-crawler-lab</h3></div>
+                <p>数据采集、信息抽取、自动化流程与工程实验相关项目，展示自动化与数据能力。</p>
+                <span>Automation</span>
+              </div>
+            </div>
+            <div class="actions">
+              <a class="button" href="https://github.com/Dejyra" target="_blank" rel="noreferrer">View on GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="panel contact anchor-offset">
+      <div class="content">
+        <div class="container">
+          <div class="copy">
+            <div class="eyebrow">Contact</div>
+            <h2>Build the next<br>with code.</h2>
+            <p class="lead">
+              迪极拉持续建设面向未来的软件系统、AI 工具与开发者平台。
+              通过 GitHub 与后续公开渠道，了解我们正在构建的项目与方向。
+            </p>
+            <div class="actions">
+              <a class="button" href="mailto:hello@dejyra.com">Contact Us</a>
+              <a class="button ghost" href="https://github.com/Dejyra" target="_blank" rel="noreferrer">Follow GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div>© <span id="year"></span> Dejyra · 迪极拉</div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#projects">Projects</a>
+        <a href="https://github.com/Dejyra" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
